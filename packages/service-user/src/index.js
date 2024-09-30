@@ -29,7 +29,7 @@ const resolvers = {
     user: async (_, args) => {
       if (args.id) {
         const response = await fetch(`http://localhost:3001/users/${args.id}`);
-        return response.json();
+        return checkResponse(response, 'Failed to fetch user data');
       } else if (args.name) {
         const response = await fetch('http://localhost:3001/users');
         const users = await response.json();
@@ -45,6 +45,18 @@ const resolvers = {
     },
   },
 };
+
+const checkResponse = (response, errorMessage) => {
+  if (response.status === 200) {
+    return response.json();
+  } else if (response.status === 404) {
+    // Return null if the result is not found
+    return null;
+  } else {
+    // Throw an error for other status codes
+    throw new Error(errorMessage);
+  }
+}
 
 const server = new ApolloServer({
   schema: buildSubgraphSchema({ typeDefs, resolvers }),
