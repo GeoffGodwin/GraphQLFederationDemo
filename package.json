@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently -n api-user,api-product,service-user,service-product,gateway -c yellow,green,cyan,magenta,blue \"npm:start -w api-user\" \"npm:start -w api-product\" \"npm:start -w service-user\" \"npm:start -w service-product\" \"npm:start -w gateway\""
+    "start": "concurrently -n api-user,api-product,api-authorization,service-user,service-product,service-authorization,gateway -c yellow,green,red,cyan,magenta,blue,white \"npm:start -w api-user\" \"npm:start -w api-product\" \"npm:start -w api-authorization\" \"npm:start -w service-user\" \"npm:start -w service-product\" \"npm:start -w service-authorization\" \"npm:start -w gateway\""
   },
   "workspaces": [
     "packages/*"
