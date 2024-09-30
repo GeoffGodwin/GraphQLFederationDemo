@@ -9,7 +9,7 @@ const typeDefs = gql`
   extend type User @key(fields: "id") {
     id: ID! @external
     name: String @external
-    authorizations: [Authorization]
+    authorizations: [Authorization] @requires(fields: "id")
   }
 
   type Authorization {
